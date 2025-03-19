@@ -1,0 +1,344 @@
+<!-- *******************************************************************************************
+  *
+  *  PAGE FRAMEWORK 
+  *
+  *  code supplied by Ant Pearson (2014) for student use in the LMU Interactive Media Design
+  *  module.  You are free to use this code as a starting point for your interactive builds.
+  *  The example has 5 pages: an intro, menu, and 3 content pages but you should modify to 
+  *  suit your own interactive designs.
+  *
+  *********************************************************************************************** -->
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Space Odyssey</title>
+
+		<!-- makes browsers render all elements more consistently. Similar to a CSS reset file -->
+		<link rel="stylesheet" href="normalize.css">
+	
+
+		<!-- the main style sheet you should edit -->  
+		<link rel="stylesheet" href="plant-odyssey.css">
+
+		<script src="js/jquery-1.11.0.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		<script src="js/jquery.ui.touch-punch.min.js"></script>
+
+		<!-- link to Fonts used from google fonts --> 
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+    	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200&display=swap" rel="stylesheet">
+
+		<!-- Link to your own javascript file  --> 
+		<script src="js/plant-odyssey.js"></script>
+
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+	</head>
+	<body>
+		<!-- main page wrap for the interactive -->
+		<div id="main-container"> 
+
+			<!-- container for all the individual pages -->
+			<div class="pages">
+				
+				<!-- ========================= INTRO =========================== -->
+
+				<div class="pages-home">
+					<div class="main">
+
+						<!-- ============= Audio ============= -->
+	
+				<audio controls autoplay hidden id="space-background-noise">
+					<source src="audio/spaceship-background-noise.mp3" type="audio/mpeg">
+				</audio>
+	
+				<audio id="hyperspeed-sound">
+					<source src="audio/hyperspeed-fade.mp3" type="audio/mpeg">
+				</audio>
+
+				<audio id="scfi-computer">
+					<source src="audio/retro-sci-fi-computer.mp3" type="audio/mpeg">
+				</audio>
+
+				<audio id="light-bulb">
+					<source src="audio/light-flicker.mp3" type="audio/mpeg">
+				</audio>
+	
+					<!-- ============= Home Page ============= -->
+	
+	
+					<div class="background">
+						<div class="space"> </div>
+						<div class="speed"> </div>
+						<div class="main-menu"> </div>
+						<div class="main-planet"> </div>
+					</div>
+					<div class="window-long">
+						<div class="window"></div>
+						<div class="grass"></div>
+						<div class="flowers"></div>
+					</div>
+					<div class="start-button">
+						<p> Start </p>
+					</div>
+					<div class="logo-container"> 
+						<div class="logo"> </div>
+					</div>
+	
+						<!-- ============= Main Menu ============= -->
+	
+					<div class="main-menu-buttons">
+						<div class="learning"> 
+							<p> Learning </p>
+						</div>
+						<div class="games"> 
+							<p> Games </p>
+						</div>
+					</div>
+
+					<div class="game-menu-buttons">
+						<div class="label"> 
+							<p> Label The Plant </p>
+						</div>
+						<div class="mystery"> 
+							<p> Mystery Plant </p>
+						</div>
+					</div>
+
+					<div class="home-settings">
+						<div class="home">
+							<p> Home </p>
+						</div>
+					</div>
+					</div>
+				</div> <!-- intro page -->
+
+				<!-- ========================= MENU =========================== -->
+
+				<div class="page-menu">
+					<h1>Main Menu</h1>
+					<div class="menu1-button button">
+						Go to page one
+					</div>
+					<div class="menu2-button button">
+						Go to page two
+					</div>
+					<div class="menu3-button button">
+						Go to page three
+					</div>
+				</div> <!-- menu page -->
+
+				<!-- ========================= OTHER PAGES =========================== -->
+				
+				<!-- ========================= Label The Plant =========================== -->
+				
+				<!------- Label The Plant Opening ------->
+
+				<div class="label-the-plant">
+					<div class="label-background"> 
+						<div class="label-placeholder"> </div>
+					</div>
+					<div class="label-placeholder"> </div>
+
+					<div class="label-main-button">
+						<div class="label-instruction-one">
+							<p> Before we arrive at our new home we should take some time to practice our plant knowledge </p>
+						</div>
+						<div class="label-next-button">
+							<p>Next</p>
+						</div>
+						<div class="label-next-button-two">
+							<p>Next</p>
+						</div>
+						<div class="label-instruction-two">
+							<p> Can you drag the correct words to the matching parts of the plant? </p>
+						</div>
+					</div>
+
+					<!------- Label The Plant Game ------->
+
+					<div class="label-main-game">
+						<div class="label-main"> </div>
+						<div class="arrows">
+							<div class="arrow-one"></div>
+							<div class="arrow-two"></div>
+							<div class="arrow-three"></div>
+							<div class="arrow-four"></div>
+							<div class="arrow-five"></div>
+						</div>
+						<div id="roots" class="drag-me roots">Roots</div>
+						<div id="flower" class="drag-me flower">Petal</div>
+						<div id="seed" class="drag-me seed">Seed</div>
+						<div id="leaf" class="drag-me leaf">leaf</div>
+						<div id="stem" class="drag-me stem">Stem</div>
+						<div id="rootsTarget" class="target target-roots"></div>
+						<div id="flowerTarget" class="target target-flower"></div>
+						<div id="seedTarget" class="target target-seed"></div>
+						<div id="leafTarget" class="target target-leaf"></div>
+						<div id="stemTarget" class="target target-stem"></div>
+						</div>
+
+						<div class="label-wrong"> <p> Oops that not quite right. Try again!</p></div>
+						<div class="label-game-over"> <p> You did it! You've done some great reseach. Let's keep going!</p> </div>
+						<div class="label-home"> <p>Let's Go</p> </div> 
+				</div>
+
+
+
+				<!-- ========================= Mystery Plant =========================== -->
+
+				<!------- Mystery Plant Opening------->
+				<div class="mystery-plant">
+					<div class="mystery-background"> </div>
+						<div class="background-lights"></div>
+						<div class="sunflower-off"> </div>
+						<div class="sunflower-on"> </div>
+						<div class="tulip-off"> </div>
+						<div class="tulip-on"> </div>
+						<div class="rose-off"> </div>
+						<div class="rose-on"> </div>
+
+					<div class="mystery-main-button">
+						<div class="mystery-instruction-one">
+							<p> Oh No! The lights have broken.  </p>
+						</div>
+						<div class="next-button">
+							<p>Next</p>
+						</div>
+						<div class="next-button-two">
+							<p>Next</p>
+						</div>
+						<div class="mystery-instruction-two">
+							<p> Can you still guess the plant while the lights are out? </p>
+						</div>
+					</div>
+
+					<!------- Mystery Plant Game------->
+
+					<div class="mystery-main">
+					<div id="wrapper">
+						<div id="question"> </div>
+						<div id="answersAndFeedback">
+							<div id="answer1" class="answer-box">Answer 1</div>
+							<div id="answer2" class="answer-box">Answer 2</div>
+							<div id="answer3" class="answer-box">Answer 3</div>
+							<div id="feedback" class="hidden"></div>
+						</div>
+						<div id="pageNumber"> 0/3 </div>
+						<div id="next-btn" class="hidden">Next</div>
+						<div class="game-over"> <p> Finally the lights are back on. Well Done on all your hard work. Let's get back to learning!</p> </div>
+						</div>
+						<div class="mystery-home"> <p>Let's Go</p> </div> 
+					</div>
+				</div>
+
+				<!-- ========================= Learning Page =========================== -->
+
+				<!------- Learning Page Opening ------->
+				<div class="learning-home">
+					<div class="learning-background"> </div>
+					<div class="learning-main"> </div>
+					
+					<div class="learning-welcome"> <p> Hey! Welcome to Plant Odyssey! Are you ready to do some learning? </p></div>
+					
+					<div class="learning-welcome-two"> <p> Before we reach our destination let's recap on our knowledge of plants </p></div>
+					
+					<div class="learning-lets"> <p> Let's Go! </p></div>
+					
+					<!------- Learning Page Plants Knowledge ------->
+
+					<div class="learning-plants">
+						<div class="learning-plant-intro"> <p> Click on each of the plants to learn more about them </p></div>
+						<div class="rose"> </div>
+						<div class="rose-learning"> 
+							<div class="rose-fact">
+							<h5> Flower Name:</h5> <p> Rose</p>
+							</div>
+							<div class="rose-fact">
+								<h5> Average Lifespan:</h5> <p> 5-7 years</p>
+							</div>
+							<div class="rose-fact">
+								<h5> Time to Grow:</h5> <p> 2-3 years </p>
+							</div>
+							<div class="rose-fact">
+								<h5> Height:</h5> <p> 4-6 feet </p>
+							</div>
+							<div class="rose-fact">
+								<h5> Blooming Time:</h5> <p> May to Sep </p>
+							</div>
+						</div>
+						<div class="sunflower"> </div>
+							<div class="sunflower-learning">
+								<div class="sunflower-fact">
+									<h5> Flower Name:</h5> <p> Sunflower</p>
+								</div>
+								<div class="sunflower-fact">
+									<h5> Average Lifespan:</h5> <p> 15-17 weeks</p>
+								</div>
+								<div class="sunflower-fact">
+									<h5> Time to Grow:</h5> <p> 8-12 weeks </p>
+								</div>
+								<div class="sunflower-fact">
+									<h5> Height:</h5> <p> Average 3 feet </p>
+								</div>
+								<div class="sunflower-fact">
+									<h5> Blooming Time:</h5> <p> August </p>
+								</div>
+							</div> 
+						<div class="tulip"> </div>
+						<div class="tulip-learning"> 
+							<div class="tulip-fact">
+								<h5> Flower Name:</h5> <p> Tulip</p>
+							</div>
+							<div class="tulip-fact">
+								<h5> Average Lifespan:</h5> <p> 2-5 years</p>
+							</div>
+							<div class="tulip-fact">
+								<h5> Time to Grow:</h5> <p> 8-16 weeks </p>
+							</div>
+							<div class="tulip-fact">
+								<h5> Height:</h5> <p> 18 to 30 inches </p>
+							</div>
+							<div class="tulip-fact">
+								<h5> Blooming Time:</h5> <p> March to May </p>
+							</div>
+						</div> 
+						<div class="plant-next"> <h5> Next </h5></div>
+					</div>
+
+					<!------- Learning Page Plant Parts Knowledge ------->
+
+					<div class="learning-parts">
+						<div class="learning-part-two"> <p> Good job! <br> Now lets research parts of a plant</p> </div>
+						<div class="learning-part-intro"> <p> Click on each part of the plant to learn more about them </p></div>
+						<div class="plant-placeholder"> </div>
+						<div class="circle-one"> </div>
+						<div class="circle-two"> </div>
+						<div class="circle-three"> </div>
+						<div class="circle-four"> </div>
+						<div class="circle-five"> </div>
+						<div class="petal-fact"> <p> The petals of a plant protect the plant from its surroundings </p></div>
+						<div class="leaf-fact"> <p> Leaves produce food for the plant to grow. This is called photosynthesis</p></div>
+						<div class="stem-fact"> <p> The stem carries the water and nutrience from the roots to different parts of the plant </p></div>
+						<div class="seed-fact"> <p> The seed is the start of the growth of a new plant </p> </div>
+						<div class="root-fact"> <p> The roots suck up water and nutrience from the ground </p></div>
+						<div class="parts-next"> <h5> Next </h5></div>
+					</div>
+					<div class="learning-finish"> <p> We did it! Now lets go play some games and test that knowledge </p></div>
+					
+					<div class="learning-lets-finish"> <p> Let's Go! </p></div>
+				</div>
+				
+
+			</div> <!-- end of pages -->
+
+		</div> <!-- end of main container -->
+	</body>
+</html>

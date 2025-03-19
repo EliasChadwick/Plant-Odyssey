@@ -1,0 +1,2163 @@
+/* ========================================================================================
+ *
+ *   PAGE FRAMEWORK
+ *
+ *   code supplied by Ant Pearson (2021) for use in the LBU Interactive Media Design
+ *   module.  Page transition code is modified from Sitepoint book "Build Mobile websites
+ *   and apps for Smart Devices", Castledine, Eftos, Wheeler (2011)
+ *
+ * ======================================================================================== */
+
+
+/* ================================================================================================================*\
+
+	INTRO PAGE
+
+\* ================================================================================================================*/
+
+
+
+/*----------------------------------------------------------------------*\
+------------------------------*Main Body*-------------------------------
+\*----------------------------------------------------------------------*/
+
+*{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body { 
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+#main-container{
+	width: 1024px;
+	height: 768px;
+	margin: 0 auto;
+	overflow: hidden; 
+	position: relative;
+}
+
+.pages { 
+    width: 1024px;
+    height: 768px;
+    border: 1px solid white;
+    margin: 0 auto;
+    background-color: #131f31;
+    position: relative;
+    overflow: hidden;
+}
+
+.main {
+    width: 1024px;
+    height: 768px;
+    position:absolute;
+    overflow: hidden;
+    opacity: 1;
+}
+
+.main-zoom { 
+    animation: mainZoom 2s ease;
+    opacity: 1;
+}
+
+@keyframes mainZoom {
+     0%{
+        transform: translate3d(0px,0px,0px);
+    }
+    85% { 
+        transform: translate3d(-200px,0px,0px);
+    }
+    100% {
+        transform: translate3d(0px,0px,0px);
+    }
+}
+
+.pages > div.current{
+	display: block;
+}
+/*----------------------------------------------------------------------*\
+----------------------------*Space Background*--------------------------
+\*----------------------------------------------------------------------*/
+
+.background {
+    width: 3072px;
+    height: 768px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.space { 
+    background: url(images/background-long.svg);
+	animation-duration: 30s;
+	animation-name: move;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+    width: 4096px;
+    height: 768px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@keyframes move {
+    from { 
+        left: 0px;
+    }
+    to {
+        left: -3072px;
+    }
+}
+
+.speed {
+    width: 4096px;
+    height: 768px;
+    background: url(images/speed-long.svg);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.show-speed{ 
+    opacity: 1;
+    transition: opacity 0.2s ease;
+    animation: move 0.6s linear infinite;
+}
+
+@keyframes fadeInSpeed {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+}
+
+
+
+/*----------------------------------------------------------------------*\
+---------------------------------*Window*-------------------------------
+\*----------------------------------------------------------------------*/
+
+.window-long {
+    width: 1024px;
+    height: 768px;
+}
+
+.window { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 769px;
+    width: 1200px;
+    background: url(images/window-long.svg);
+}
+
+.window-move { 
+    animation: windowMove 2s ease;
+    opacity: 1;
+}
+
+@keyframes windowMove {
+     0%{
+        transform: translate3d(0px,0px,0px);
+    }
+    85% { 
+        transform: translate3d(-50px,0px,0px);
+    }
+    100% {
+        transform: translate3d(0px,0px,0px);
+    }
+}
+
+/*----------------------------------------------------------------------*\
+----------------------------------*Grass*-------------------------------
+\*----------------------------------------------------------------------*/
+
+.grass {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 769px;
+    width: 1200px;
+    background: url(images/grass-long.svg);
+}
+
+.flowers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 769px;
+    width: 1200px;
+    background: url(images/flowers-long.svg);
+}
+
+/*----------------------------------------------------------------------*\
+-----------------------------*Start Button*-----------------------------
+\*----------------------------------------------------------------------*/
+
+
+.start-button { 
+    width: 150px;
+    height: 80px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    margin-left: -75px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.show-button{ 
+    /* animation: fadeIn 2s; */
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+}
+
+.start-button:hover {
+    transform: scaleX(1.2) scaleY(1.2);
+}
+
+
+.start-button p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 3.5em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.start-button images {
+    width: 100%;
+}
+
+/*----------------------------------------------------------------------*\
+---------------------------------*Logo*---------------------------------
+\*----------------------------------------------------------------------*/
+
+.logo-container {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    margin-left: -150px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 1s ease;
+    width: 300px; height: 350px;
+    overflow: hidden;
+}
+
+.logo { 
+    width: 1000px; height: 1000px;
+    background: url(images/final-logo-01.svg);
+    position: absolute;
+}
+
+.show-logo{
+    animation: zoomIn 1s;
+    opacity: 1;
+}
+
+@keyframes zoomIn { 
+    from {
+        scale: 0;
+    }
+
+    to { 
+        scale: 1;
+    }
+}
+
+/*----------------------------------------------------------------------*\
+--------------------------*Main Menu Buttons*---------------------------
+\*----------------------------------------------------------------------*/
+
+.learning { 
+    width: 250px;
+    height: 90px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 45%;
+    left: 20%;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.games { 
+    width: 250px;
+    height: 90px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 45%;
+    left: 60%;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.home { 
+    width: 110px;
+    height: 50px;
+    background: white;
+    outline: black solid 5px;
+    position: absolute;
+    top: 3%;
+    left: 3%;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.label { 
+    width: 250px;
+    height: 90px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 45%;
+    left: 60%;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+}
+
+.mystery { 
+    width: 250px;
+    height: 90px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 45%;
+    left: 20%;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+}
+
+.settings { 
+    width: 110px;
+    height: 50px;
+    background: white;
+    outline: black solid 5px;
+    position: absolute;
+    top: 3%;
+    left: 97%;
+    margin-left: -110px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.home-settings p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.learning:hover {
+    transform: scaleX(1.2) scaleY(1.2);
+}
+
+.games:hover {
+    transform: scaleX(1.2) scaleY(1.2);
+}
+
+.label:hover {
+    transform: scaleX(1.2) scaleY(1.2);
+}
+
+.mystery:hover {
+    transform: scaleX(1.2) scaleY(1.2);
+}
+
+.main-menu-buttons p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 3.5em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.game-menu-buttons-hidden{
+    pointer-events:none;
+}
+
+.game-menu-buttons p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2.25em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.show-main-buttons { 
+    opacity: 1;
+    pointer-events: all;
+}
+
+.show-game-buttons { 
+    opacity: 1;
+    pointer-events: all;
+}
+
+/*----------------------------------------------------------------------*\
+-------------------------------*Main Menu*------------------------------
+\*----------------------------------------------------------------------*/
+
+.main-menu {
+    width: 1024px;
+    height: 768px;
+    background: url(images/main-menu-short.svg);
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.show-main-menu{ 
+    opacity: 1;
+    transition: opacity 0.1s ease;
+}
+
+.main-planet { 
+    width: 1024px;
+    height: 768px;
+    background: url(images/main-menu-planet-01.svg);
+    position: absolute;
+    left: -400px;
+    top: 0;
+    opacity: 0;
+}
+
+.show-planet { 
+    opacity: 1;
+    transition: opacity 0.1s ease;
+    animation: rotation 120s infinite linear;
+}
+
+@keyframes rotation { 
+    from {transform: rotate(0deg);}
+    to { transform: rotate(360deg);}
+}
+
+/*----------------------------------------------------------------------*\
+----------------------*label The Plant Main Menu*-----------------------
+\*----------------------------------------------------------------------*/
+
+.label-the-plant {
+    width: 1024px;
+    height: 768px;
+    display: none;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+.label-background {
+    background: url(images/label-background-01.svg);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1024px;
+    height: 768px;
+}
+
+.label-placeholder {
+    background: url(images/drag-drop-main-01.svg);
+    position: absolute;
+    width: 76px;
+    height: 57px;
+    border-radius: 3px;
+    left: 536.2px;
+    top: 294.5px;
+}
+
+.label-main {
+    background: url(images/drag-drop-main-01.svg);
+    position: absolute;
+    width: 885px;
+    height: 664px;
+    left: 69.5px;
+    top: 45px;
+    border: 7px solid #F7941D;
+    border-radius: 20px;
+    opacity: 0;
+    filter: blur(5px);
+}
+
+.label-blur {
+    filter: blur(0px);
+    transition: 3s;
+}
+
+.label-main-delay {
+    animation: fadeInMain 2s;
+    opacity: 1;
+}
+
+@keyframes fadeInMain {
+    0% { opacity: 0;}
+    100% { opacity: 1;}
+}
+
+.background-blur {
+    filter: blur(5px);
+    transition: filter 2s;
+}
+
+.label-instruction-one {  
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 284px;
+    left: 262px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.label-instruction-one p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.label-next-button {  
+    width: 100px;
+    height: 40px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 70%;
+    left: 662px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.label-next-button p {
+    font-family: 'IndieFlower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.label-next-button-two {  
+    width: 100px;
+    height: 40px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 70%;
+    left: 662px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.label-next-button-two p {
+    font-family: 'IndieFlower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.next-button {  
+    width: 100px;
+    height: 40px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 70%;
+    left: 662px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+}
+
+.next-button p {
+    font-family: 'IndieFlower',Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.next-button-two {  
+    width: 100px;
+    height: 40px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 70%;
+    left: 662px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+
+}
+
+.next-button-two p {
+    font-family: 'IndieFlower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.show-instruction-one{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.label-instruction-two {  
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 284px;
+    left: 262px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.label-instruction-two p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.show-instruction-two{
+    opacity: 1;
+}
+
+/*----------------------------------------------------------------------*\
+-------------------------*label The Plant Game*-------------------------
+\*----------------------------------------------------------------------*/
+
+.drag-me{
+    width: 100px;
+    height: 60px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 82%;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2.5em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    z-index: 5;
+}
+
+
+.show-label-buttons {
+    opacity: 1;
+}
+
+#roots {
+    left: 112px;
+}
+
+#flower {
+    left: 285px;
+}
+
+#seed {
+    left: 462px;
+}
+
+#leaf {
+    left: 634px;
+}
+
+#stem {
+    left: 806px;
+}
+
+.target{
+    width: 120px;
+    height: 64px;
+    border: 5px solid #1c7048ff;
+    background-color: white;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.arrows{
+    width: 1024px;
+    height: 768px;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.show-arrows {
+    opacity: 1;
+}
+
+.arrow-one{
+    background: url(images/arrow-one.svg);
+    position: absolute;
+    width: 200px;
+    height:31px;
+    left: 582px;
+    top: 551px;
+}
+
+.arrow-two{
+    background: url(images/arrow-one.svg);
+    position: absolute;
+    width: 200px;
+    height:31px;
+    left: 522px;
+    top: 170px;
+}
+
+.arrow-three{
+    background: url(images/arrow-three.svg);
+    position: absolute;
+    width: 300px;
+    height:31px;
+    left: 522px;
+    top: 372px;
+}
+
+.arrow-four{
+    background: url(images/arrow-two.svg);
+    position: absolute;
+    width: 300px;
+    height:31px;
+    top: 507px;
+    left: 220px;
+}
+
+.arrow-five{
+    background: url(images/arrow-two.svg);
+    position: absolute;
+    width: 300px;
+    height:31px;
+    top: 331px;
+    left: 130px;
+}
+
+.show-targets {
+    opacity: 1;
+}
+
+.target-roots{
+    position: absolute;
+    left: 720px;
+    top: 530px;
+}
+
+.target-flower{
+    position: absolute;
+    left: 700px;
+    top: 150px;
+}
+
+.target-seed{
+    position: absolute;
+    left: 195px;
+    top: 485px;
+}
+
+.target-leaf{
+    position: absolute;
+    left: 130px;
+    top: 310px;
+}
+
+.target-stem{
+    position: absolute;
+    left: 760px;
+    top: 350px;
+}
+
+.label-main-game {
+    opacity: 1;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.hide-label-main-game {
+    opacity: 0;
+}
+
+.label-game-over {
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 284px;
+    left: 262px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.label-game-over p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.label-wrong {
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 284px;
+    left: 262px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.label-wrong p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.label-game-final{
+    opacity: 1;
+}
+
+.label-home { 
+    width: 150px;
+    height: 80px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    margin-left: -75px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.label-home-final{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.label-home:hover {
+    transform: scaleX(1.2) scaleY(1.2);
+}
+
+
+.label-home p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2.5em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+/*----------------------------------------------------------------------*\
+-----------------------*Mystery Plant Main Menu*------------------------
+\*----------------------------------------------------------------------*/
+
+.mystery-plant {
+    width: 1024px;
+    height: 768px;
+    display: none;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+.mystery-background {
+    background: url(images/mystery-background.svg);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1024px;
+    height: 768px;
+}
+
+.background-lights { 
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1024px;
+    height: 768px;
+    background-color: #58595b;
+    opacity: 0%;
+    z-index: 1;
+}
+
+.show-lights {
+    opacity: 60%;
+}
+
+.mystery-instruction-one {  
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 284px;
+    left: 262px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.mystery-instruction-one p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.mystery-instruction-two {  
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 284px;
+    left: 262px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.mystery-instruction-two p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.show-mystery-instruction-one{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.show-mystery-instruction-two{
+    opacity: 1;
+}
+
+/*----------------------------------------------------------------------*\
+--------------------------*Mystery Plant Game*--------------------------
+\*----------------------------------------------------------------------*/
+
+#wrapper{
+	margin: 0 auto;
+	width: 1024px;
+	height: 768px;
+	position: relative;
+}
+
+.mystery-main{
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    z-index: 3;
+}
+
+.mystery-main-button{
+    z-index: 2;
+}
+
+.show-wrapper{
+    opacity: 1;
+}
+
+#question{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 1024px;
+    height: 768px;
+}
+
+#answersAndFeedback{
+	position: absolute;
+	left: 150px;
+	top: 300px;
+}
+
+#feedback{
+	position: absolute;
+	top: -300px;
+	left: -150px;
+	width: 1024px;
+    height: 768px;
+    z-index: 3;
+}
+
+
+#pageNumber{
+width: 100px;
+height: 40px;
+background: #1c7048ff;
+outline: white solid 5px;
+border-radius: 20px;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-content: center;
+z-index: 4;
+text-align: center;
+position: absolute;
+top: 694px;
+right: 900px;
+cursor: pointer;
+font-family: 'IndieFlower' ,Arial, Helvetica, sans-serif;
+color: white;
+font-size: 1em;
+transition: opacity 1s ease;
+}
+
+.hide-page-num {
+    opacity: 0;
+}
+
+.move-score{
+	top: 300px;
+	right: 450px;
+}
+
+
+#next-btn{
+    width: 100px;
+    height: 40px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 4;
+    text-align: center;
+	position: absolute;
+	top: 694px;
+	right: 23px;
+	cursor: pointer;
+    font-family: 'IndieFlower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+}
+
+#answer1{
+    position: absolute;
+    top: 370px;
+    z-index: 4;
+}
+
+#answer2{
+    position: absolute;
+    left: 252px;
+    top: 370px;
+    z-index: 4;
+}
+
+#answer3{
+    position: absolute;
+    top: 370px;
+    left: 504px;
+    z-index: 4;
+}
+
+.answer-box{
+    width: 200px;
+    height: 60px;
+	color: #666;
+	margin: 10px 0;
+	font-size: 0.7em;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	cursor: pointer;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2.5em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+}
+
+.hidden{
+	opacity: 0;
+}
+.hidden-final{
+	opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.lights-final{
+	opacity: 0;
+    transition: opacity 2s ease, transform 2s ease;
+}
+
+.selected{
+	background-color: #666;
+	color: white;
+}
+
+.correct{
+	background-color: #1c7048ff;
+	color: white;
+}
+
+.incorrect{
+	background-color: rgb(173, 0, 0);
+	color: white;
+}
+
+.game-over {
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 284px;
+    left: 262px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.game-over p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.game-final{
+    opacity: 1;
+}
+
+.mystery-home { 
+    width: 150px;
+    height: 80px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    margin-left: -75px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    z-index: 5;
+}
+
+.mystery-home-final{
+    opacity: 1;
+}
+
+.mystery-home:hover {
+    transform: scaleX(1.2) scaleY(1.2);
+}
+
+
+.mystery-home p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2.5em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+/*----------------------------------------------------------------------*\
+-------------------------*Learning Main Menu*---------------------------
+\*----------------------------------------------------------------------*/
+
+.learning-home {
+    width: 1024px;
+    height: 768px;
+    display: none;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+.learning-background {
+    background: url(images/learning-background-01.svg);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1024px;
+    height: 768px;
+}
+
+.learning-main {
+    position: absolute;
+    width: 885px;
+    height: 652px;
+    left: 69.5px;
+    top: 49px;
+    border: 7px solid #F7941D;
+    background: #2a3760;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.learning-blur {
+    filter: blur(5px);
+    transition: filter 2s;
+}
+
+.learning-main-delay {
+    opacity: 1;
+}
+
+.learning-welcome {
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 284px;
+    left: 262px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+}
+
+.learning-welcome-two {
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 284px;
+    left: 262px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+}
+
+.learning-welcome-two p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.learning-welcome p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.learning-lets { 
+    width: 160px;
+    height: 80px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    margin-left: -75px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.learning-lets p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2.5em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+/*----------------------------------------------------------------------*\
+---------------------*Learning Plants Knowledge*------------------------
+\*----------------------------------------------------------------------*/
+
+.learning-plants {
+    position: absolute;
+    width: 899px;
+    height: 667px;
+    left: 69.5px;
+    top: 49px;
+    border-radius: 20px;
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.learning-plant-intro { 
+    width: 899px;
+    height: 80px;
+    position: absolute;
+    top: 0%;
+    left: 8%;
+    margin-left: -75px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    z-index: 5;
+    text-align: center;
+}
+
+.learning-plant-intro p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.learning-part-two { 
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 235px;
+    left: 193px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.learning-part-two p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.rose {
+    background: url(images/rose-icon-01.svg);
+    position: absolute;
+    top: 0%;
+    left: -8%;
+    opacity: 0;
+    width: 50%;
+    height: 40%;
+    transition: opacity 1s ease;
+}
+
+.sunflower {
+    background: url(images/sunflower-icon-01.svg);
+    position: absolute;
+    top: 30%;
+    left: 68%;
+    opacity: 0;
+    width: 50%;
+    height: 40%;
+    transition: opacity 1s ease;
+}
+
+.tulip {
+    background: url(images/tulip-icon-01.svg);
+    position: absolute;
+    top: 60%;
+    left: -7%;
+    opacity: 0;
+    width: 50%;
+    height: 40%;
+    transition: opacity 1s ease;
+}
+
+.rose-learning {
+    width: 270px;
+    height: auto;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 78px;
+    left: 200px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column ;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.rose-learning p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1.2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.rose-learning h5 {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.rose-fact {
+    display: flex;
+    margin-left: 10px;
+}
+
+.sunflower-learning {
+    width: 270px;
+    height: auto;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 278px;
+    left: 432px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column ;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.sunflower-learning p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1.2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.sunflower-learning h5 {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.sunflower-fact {
+    display: flex;
+    margin-left: 10px;
+}
+
+.tulip-learning {
+    width: 270px;
+    height: auto;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 478px;
+    left: 200px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column ;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.tulip-learning p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1.2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.tulip-learning h5 {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.tulip-fact {
+    display: flex;
+    margin-left: 10px;
+}
+
+.plant-next {
+    width: 100px;
+    height: 40px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 588px;
+    left: 720px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.plant-next h5 {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1.5em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+/*----------------------------------------------------------------------*\
+----------------------*Learning Parts Knowledge*------------------------
+\*----------------------------------------------------------------------*/
+
+.learning-parts {
+    position: absolute;
+    width: 899px;
+    height: 667px;
+    left: 69.5px;
+    top: 49px;
+    border-radius: 20px;
+    opacity: 1;
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+.learning-part-intro { 
+    width: 899px;
+    height: 80px;
+    position: absolute;
+    top: 0%;
+    left: 8%;
+    margin-left: -75px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    z-index: 5;
+    text-align: center;
+}
+
+.learning-part-intro p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.plant-placeholder {
+    background: url(images/drag-drop-main-01.svg);
+    position: absolute;
+    width: 885px;
+    height: 664px;
+    left: 0px;
+    top: 0px;
+    border: 7px solid #F7941D;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 1s ease,
+}
+
+.circle-one {
+    outline: white solid 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 74%;
+    left: 73%;
+    width: 70px;
+    height: 70px;
+    opacity: 0;
+}
+
+.circle-two {
+    outline: white solid 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 67%;
+    left: 46.3%;
+    width: 70px;
+    height: 70px;
+    opacity: 0;
+}
+
+.circle-three {
+    outline: white solid 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 41%;
+    left: 36%;
+    width: 70px;
+    height: 70px;
+    opacity: 0;
+}
+
+.circle-four {
+    outline: white solid 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 49%;
+    left: 46.3%;
+    width: 70px;
+    height: 70px;
+    opacity: 0;
+}
+
+.circle-five {
+    outline: white solid 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: 17%;
+    left: 52%;
+    width: 70px;
+    height: 70px;
+    opacity: 0;
+}
+
+.petal-fact {
+    width: 250px;
+    height: 100px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 100px;
+    left: 600px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.petal-fact p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.leaf-fact {
+    width: 250px;
+    height: 100px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.leaf-fact p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.stem-fact {
+    width: 250px;
+    height: 100px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 250px;
+    left: 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.stem-fact p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.seed-fact {
+    width: 250px;
+    height: 100px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 400px;
+    left: 50px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.seed-fact p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.root-fact {
+    width: 250px;
+    height: 100px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 250px;
+    left: 600px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.root-fact p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.parts-next {
+    width: 100px;
+    height: 40px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 588px;
+    left: 720px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.parts-next h5 {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 1.5em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.learning-finish {
+    width: 500px;
+    height: 200px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 284px;
+    left: 262px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    z-index: 3;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+}
+
+.learning-lets-finish { 
+    width: 160px;
+    height: 80px;
+    background: #1c7048ff;
+    outline: white solid 5px;
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    margin-left: -75px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    opacity: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.learning-finish p {
+    font-family: 'Lexend' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.learning-lets-finish p{ 
+    font-family: 'Indie Flower' ,Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 2.5em;
+    padding: 0.05em 0.25em;
+    margin: 0;
+    transition: font-size 1s ease;
+}
+
+.learning-fade {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.learning-fade-out {
+    opacity: 0;
+}
+
+/* ================================================================================================================*\
+
+	TRANSITION CODE
+
+	Leave this alone if you are happy with either fade or push transitions between pages.  If you want faster
+	transitions you could alter the 1s timing in the .in, .out class rules below
+
+\* ================================================================================================================*/
+
+
+ 
+.in, .out{
+	animation-timing-function: ease-in-out;
+	animation-duration: 1s;
+}
+
+.push-left.out{
+	animation-name: outToLeft;
+}
+
+.push-left.in{
+	animation-name: inFromRight;
+}
+
+
+.push-right.out{
+	animation-name: outToRight;
+}
+
+.push-right.in{
+	animation-name: inFromLeft;
+}
+
+.fade.out{
+	animation-name: fadeOut;
+}
+
+.fade.in{
+	animation-name: fadeIn;
+}
+
+@keyframes outToLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+
+
+@keyframes outToRight {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}
+
+
+@keyframes inFromRight {
+    from { transform: translateX(1024px); }
+    to { transform: translateX(0px); }
+}
+
+
+@keyframes inFromLeft {
+    from { transform: translateX(-1024px); }
+    to { transform: translateX(0px); }
+}
+
+
+@keyframes fadeIn {
+    from { opacity:0; }
+    to { opacity:1; }
+}
+
+
+@keyframes fadeOut {
+    from { opacity:1; }
+    to { opacity:0; }
+}
+
+/*----------------------------------------------------------------------*\
+---------------------------------*End*----------------------------------
+\*----------------------------------------------------------------------*/
+
+
+
+
+
+ 
